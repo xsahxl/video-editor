@@ -1,0 +1,15 @@
+./components
+./interface
+./pages
+./public
+./styles
+./theme
+./utils
+./.env
+./.env.development
+./.fcignore
+./.gitignore
+./postcss.config.mjs
+./README.md
+./tailwind.config.ts
+./tsconfig.json

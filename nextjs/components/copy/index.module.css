@@ -1,0 +1,15 @@
+.copy-container {
+  display: flex;
+  align-items: center;
+}
+
+.copy-container .copy-icon {
+  visibility: hidden;
+  font-size: 12px;
+  margin-left: 4px;
+  color: #1677ff
+}
+
+.copy-container:hover .copy-icon {
+  visibility: inherit;
+}
