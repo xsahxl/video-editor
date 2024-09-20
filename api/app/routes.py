@@ -1,6 +1,9 @@
-from flask import Blueprint, jsonify, request, Response, send_from_directory, url_for  # 添加 url_for
+from flask import Blueprint, jsonify, request, Response
 import os
 import subprocess
+import dashscope
+from dashscope.audio.tts_v2 import *
+import glob  # 导入 glob 模块
 
 main = Blueprint('main', __name__)
 
@@ -19,11 +22,6 @@ def generate_video():
     files = request.files.getlist('files')
     if not files:
         return jsonify({"error": "No files uploaded."}), 400
-
-    # 获取文本字段
-    text = request.form.get('text', '')
-    print(text, 23)
-
     # 保存上传的文件
     os.makedirs(upload_folder, exist_ok=True)
     for file in files:
@@ -32,12 +30,25 @@ def generate_video():
     # 生成视频的输出路径
     os.makedirs(output_folder, exist_ok=True)  # 确保输出目录存在
     output_video_path = os.path.join(output_folder, 'video.mp4')
+    output_audio_path = os.path.join(output_folder, 'audio.mp3')
 
+     # 获取文本字段
+    dashscope.api_key = os.environ.get("API_KEY")  # 从环境变量中获取 API 密钥
+    text = request.form.get('text', '')
+    synthesizer = SpeechSynthesizer(model=os.environ.get('MODEL'), voice=os.environ.get('VOICE'))
+    audio = synthesizer.call(text)
+    with open(output_audio_path, 'wb') as f:
+        f.write(audio)
+
+
+    image_type = request.form.get('image_type')
     # FFmpeg 命令
     ffmpeg_command = [
         'ffmpeg',
         '-framerate', '1',
-        '-i', os.path.join(upload_folder, 'output_%06d.jpg'),  # 使用格式化的文件名
+        # TODO:
+        '-i', os.path.join(upload_folder, image_type),  # 使用格式化的文件名
+        '-i', output_audio_path,
         '-c:v', 'libx264',
         '-r', '30',
         '-pix_fmt', 'yuv420p',

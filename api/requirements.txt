@@ -1,4 +1,4 @@
 Flask
-Werkzeug
 python-dotenv
 ffmpeg
+dashscope

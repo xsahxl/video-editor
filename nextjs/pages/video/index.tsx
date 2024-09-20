@@ -12,7 +12,7 @@ export default function Page() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
-    const { fileList, text } = await form.validateFields();
+    const { fileList, text, image_type } = await form.validateFields();
     setLoading(true);
     const files = map(fileList, (file) => file.originFileObj); // 获取原始文件对象
     const formData = new FormData();
@@ -20,6 +20,7 @@ export default function Page() {
       formData.append('files', file); // 添加文件到 FormData
     });
     formData.append('text', text); // 添加文本字段到 FormData
+    formData.append('image_type', image_type);
     try {
       const response = await axios.post('/api/generate_video', formData, {
         headers: {
@@ -45,6 +46,15 @@ export default function Page() {
           <Form form={form} layout='vertical'>
             <Form.Item name='fileList' label='上传图片' required rules={[{ required: true, message: '请上传图片' }]}>
               <Upload />
+            </Form.Item>
+            <Form.Item
+              name='image_type'
+              label='图片匹配格式'
+              required
+              rules={[{ required: true, message: '图片匹配格式' }]}
+              help='例如：image_01.jpg 对应 image_%02d.jpg; image_0001.png 对应 image_%04d.png'
+            >
+              <Input placeholder='请输入图片匹配格式' />
             </Form.Item>
             <Form.Item name='text' label='添加文字' required rules={[{ required: true, message: '请输入文字' }]}>
               <Input.TextArea placeholder='请输入文字' />
