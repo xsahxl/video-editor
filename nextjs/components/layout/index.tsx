@@ -49,7 +49,7 @@ const App: FC<IProps> = ({ children }) => {
               lineHeight: '18px',
             }}
           >
-            爱无限引擎
+            视频编辑器
           </div>
         )}
         <Menu
