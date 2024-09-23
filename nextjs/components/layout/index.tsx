@@ -15,6 +15,11 @@ const items: MenuItem[] = [
     label: '图片+文字',
     icon: <UserAddOutlined />,
   },
+  {
+    key: '/excalidraw',
+    label: 'excalidraw',
+    icon: <UserAddOutlined />,
+  },
 ];
 
 interface IProps extends PropsWithChildren {}
@@ -66,11 +71,7 @@ const App: FC<IProps> = ({ children }) => {
         <Header
           style={{ background: '#f0f2f5', flexDirection: 'row-reverse', padding: '0 16px' }}
           className='flex justify-between items-center'
-        >
-          <Button type='text' icon={<LogoutOutlined />} onClick={onLoginOut}>
-            退出
-          </Button>
-        </Header>
+        ></Header>
         <Content style={{ background: colorBgContainer, borderRadius: borderRadiusLG }}>{children}</Content>
       </Layout>
     </Layout>

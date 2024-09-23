@@ -14,6 +14,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.4.0
         version: 5.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@excalidraw/excalidraw':
+        specifier: ^0.17.6
+        version: 0.17.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@re-dev/react-truncate':
         specifier: ^0.4.2
         version: 0.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -123,6 +126,12 @@ packages:
 
   '@emotion/unitless@0.7.5':
     resolution: {integrity: sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==}
+
+  '@excalidraw/excalidraw@0.17.6':
+    resolution: {integrity: sha512-fyCl+zG/Z5yhHDh5Fq2ZGmphcrALmuOdtITm8gN4d8w4ntnaopTXcTfnAAaU3VleDC6LhTkoLOTG6P5kgREiIg==}
+    peerDependencies:
+      react: ^17.0.2 || ^18.2.0
+      react-dom: ^17.0.2 || ^18.2.0
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -1215,6 +1224,11 @@ snapshots:
   '@emotion/hash@0.8.0': {}
 
   '@emotion/unitless@0.7.5': {}
+
+  '@excalidraw/excalidraw@0.17.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@isaacs/cliui@8.0.2':
     dependencies:
